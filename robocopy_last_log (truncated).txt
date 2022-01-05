@@ -1,0 +1,36 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : 03 January 2022 19:00:00
+   Source : L:\doclinks\
+     Dest : \\<<server name removed >>\L$\doclinks\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /PURGE /MIR /Z /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	               12425	L:\doclinks\
+	               41944	L:\doclinks\Attached\
+	              163297	L:\doclinks\attachments\
+	                   0	L:\doclinks\CommLogDocs\
+	                   0	L:\doclinks\CONTTEMP\
+	                   2	L:\doclinks\default\
+	                   0	L:\doclinks\diagrams\
+	                   0	L:\doclinks\ENGDOCS\
+	                   0	L:\doclinks\images\
+	                  17	L:\doclinks\Integrity\
+					  ...
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :       251         0         0         0         0         0
+   Files :    219394         0    219394         0         0         0
+   Bytes : 239.598 g         0 239.598 g         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : 03 January 2022 19:00:00
+
