@@ -2,7 +2,7 @@
 <Task version="1.2" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
   <RegistrationInfo>
     <Date>2021-03-10T16:02:15.4687623</Date>
-	<! add a valid domain and admin account for your server />
+	<!-- add a valid domain and admin account for your server -->
     <Author>**your domain**\**an admin account**</Author>
     <Description>The doclinks area is used for the files store for Maximo so this needs to be replicated to the report server.</Description>
   </RegistrationInfo>
@@ -17,7 +17,7 @@
   </Triggers>
   <Principals>
     <Principal id="Author">
-	  <! add a valid domain and admin account for your server />
+	  <!-- add a valid domain and admin account for your server -->
 	  <Author>**your domain**\**an admin account**</Author>
       <LogonType>Password</LogonType>
       <RunLevel>HighestAvailable</RunLevel>
@@ -44,7 +44,7 @@
   </Settings>
   <Actions Context="Author">
     <Exec>
-	<! The location of the RoboCopy batch script />
+	<!-- The location of the RoboCopy batch script -->
       <Command>C:\robocopy_script\robocopy_doclinks_to_report_server.bat</Command>
     </Exec>
   </Actions>
