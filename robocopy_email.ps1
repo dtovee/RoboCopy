@@ -25,14 +25,14 @@
 $Debug = 0; # Set 0 off, 1 on
 $Testing = 0; # Set 0 off, 1 on
 $Source = "L:\doclinks\";
-$Destination = "\\nrwmaxrpt30-dev.uk.perenco.com\L$\doclinks\";
+$Destination = "\\<your server>\L$\doclinks\";
 # this probably isn't good practice to have on the boot drive...
 $Log = "C:\robocopy_script\RobocopyLog.txt"
 $Args = "*.* /MIR /FFT /Z /XA:H /W:5 /UniLog:$($Log)";
-#$ToEmail = "helpdesksns@uk.perenco.com";
-$ToEmail = "dtovee@uk.perenco.com";
-$FromEmail = "helpdesksns@uk.perenco.com";
-$SmptServer = "dag-uknrw.uk.perenco.com";
+#$ToEmail = "helpdesksns@<your domain>";
+$ToEmail = "dtovee@<your domain>";
+$FromEmail = "helpdesksns@<your domain>";
+$SmptServer = "dag-uknrw.<your domain>";
 # for testing
 if ( $Testing ) {$Args = -join($Args, " /v /L");}
 #set default vars
