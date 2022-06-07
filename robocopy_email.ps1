@@ -1,6 +1,6 @@
 # PowerShell Robocopy
 # Author: David Tovee
-# 23-May-2022
+# 07-June-2022
 # Version: 1.00
 
 # https://social.technet.microsoft.com/wiki/contents/articles/1073.robocopy-and-a-few-examples.asp
@@ -31,8 +31,8 @@ $Log = "C:\robocopy_script\RobocopyLog.txt"
 $Args = "*.* /MIR /FFT /Z /XA:H /W:5 /UniLog:$($Log)";
 #$ToEmail = "helpdesksns@<your domain>";
 $ToEmail = "dtovee@<your domain>";
-$FromEmail = "helpdesksns@<your domain>";
-$SmptServer = "dag-uknrw.<your domain>";
+$FromEmail = "servicedesk@<your domain>";
+$SmptServer = "<your DAG>.<your domain>";
 # for testing
 if ( $Testing ) {$Args = -join($Args, " /v /L");}
 #set default vars
