@@ -1,6 +1,6 @@
 # PowerShell Robocopy
 # Author: David Tovee
-# 07-June-2022
+# 14-June-2022
 # Version: 1.00
 
 # https://social.technet.microsoft.com/wiki/contents/articles/1073.robocopy-and-a-few-examples.asp
@@ -28,19 +28,19 @@ $Source = "L:\doclinks\";
 $Destination = "\\<your server>\L$\doclinks\";
 # this probably isn't good practice to have on the boot drive...
 $Log = "C:\robocopy_script\RobocopyLog.txt"
-$Args = "*.* /MIR /FFT /Z /XA:H /W:5 /UniLog:$($Log)";
+$Params = "*.* /MIR /FFT /Z /XA:H /W:5 /UniLog:$($Log)";
 #$ToEmail = "helpdesksns@<your domain>";
 $ToEmail = "dtovee@<your domain>";
 $FromEmail = "servicedesk@<your domain>";
 $SmptServer = "<your DAG>.<your domain>";
 # for testing
-if ( $Testing ) {$Args = -join($Args, " /v /L");}
+if ( $Testing ) {$Params = -join($Params, " /v /L");}
 #set default vars
 $ExitCodeString = "not set";
 $ExitCodeInt = "not set";
 
 # run Robocopy
-Robocopy $Source $Destination $Args.Split(" ");
+Robocopy $Source $Destination $Params.Split(" ");
 
 # collect the exit status
 $ExitCodeInt = $LASTEXITCODE
@@ -69,7 +69,7 @@ elseif( $ExitCodeInt -eq 0 ) { $ExitCodeString = "No Change"}
 # Debug Section
 if( $Debug ){
 	Write-Host "Did the script completed successfully [$($?)]";
-	Write-Host "Script Args [$($Source) $($destination) $($Args)]";
+	Write-Host "Script Params [$($Source) $($destination) $($Params)]";
 	Write-Host "Script Exit Code Int [$($ExitCodeInt)]";
 	Write-Host "Script Exit Code String [$($ExitCodeString)]"
 	Write-Host "Script Error [$($Error)]";
@@ -79,7 +79,7 @@ if( $Debug ){
 
 ## Failure Report
 # if ($Error){
-if ($ExitCodeInt > 3 ){
+if ($ExitCodeInt -gt 3 ){
 	Write-Host "Send-MailMessage -to $($ToEmail) -From $($env:COMPUTERNAME) -Subject $($env:COMPUTERNAME) - Exit Reason [$($ExitCodeString)] Code [$($ExitCodeInt)] -SmtpServer $($SmptServer) –Attachments $($Log)";
 	Send-MailMessage -to $ToEmail -From $FromEmail -Subject "$($env:COMPUTERNAME) - Exit Reason [$($ExitCodeString)] Code [$($ExitCodeInt)]" -SmtpServer $SmptServer –Attachments $Log;
 	}
