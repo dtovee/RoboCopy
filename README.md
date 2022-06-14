@@ -1,6 +1,7 @@
 # RoboCopy
 How I've used RoboCopy to synchronise Windows Servers
 
+Due to the windows scheduler depricating emails I use a Powershell script to send out an email on failure.
 
 This information has been lifted from https://ss64.com/nt/robocopy-exit.html which would appear to be owned by Simon Sheppard
 The text below is not mine but I found it very helpful
