@@ -38,7 +38,6 @@ if ( $Testing ) {$Args = -join($Args, " /v /L");}
 #set default vars
 $ExitCodeString = "not set";
 $ExitCodeInt = "not set";
-$Error = 0;
 
 # run Robocopy
 Robocopy $Source $Destination $Args.Split(" ");
@@ -49,19 +48,19 @@ $ExitCodeInt = $LASTEXITCODE
 #$ExitCodeInt = 4;
 
 # set the exit code string
-if( $ExitCodeInt -eq 16 ) { $ExitCodeString = "***FATAL ERROR***"; $Error = 1}
+if( $ExitCodeInt -eq 16 ) { $ExitCodeString = "***FATAL ERROR***"}
 elseif( $ExitCodeInt -eq 15 ) { $ExitCodeString = "OKCOPY + FAIL + MISMATCHES + XTRA"}
 elseif( $ExitCodeInt -eq 14 ) { $ExitCodeString = "FAIL + MISMATCHES + XTRA"}
 elseif( $ExitCodeInt -eq 13 ) { $ExitCodeString = "OKCOPY + FAIL + MISMATCHES"}
 elseif( $ExitCodeInt -eq 12 ) { $ExitCodeString = "FAIL + MISMATCHES"}
 elseif( $ExitCodeInt -eq 11 ) { $ExitCodeString = "OKCOPY + FAIL + XTRA"}
-elseif( $ExitCodeInt -eq 10 ) { $ExitCodeString = "FAIL + XTRA"; $Error = 1}
+elseif( $ExitCodeInt -eq 10 ) { $ExitCodeString = "FAIL + XTRA"}
 elseif( $ExitCodeInt -eq 9 ) { $ExitCodeString = "OKCOPY + FAIL"}
-elseif( $ExitCodeInt -eq 8 ) { $ExitCodeString = "FAIL"; $Error = 1}
+elseif( $ExitCodeInt -eq 8 ) { $ExitCodeString = "FAIL"}
 elseif( $ExitCodeInt -eq 7 ) { $ExitCodeString = "OKCOPY + MISMATCHES + XTRA"}
 elseif( $ExitCodeInt -eq 6 ) { $ExitCodeString = "MISMATCHES + XTRA"}
 elseif( $ExitCodeInt -eq 5 ) { $ExitCodeString = "OKCOPY + MISMATCHES"}
-elseif( $ExitCodeInt -eq 4 ) { $ExitCodeString = "MISMATCHES"; $Error = 1}
+elseif( $ExitCodeInt -eq 4 ) { $ExitCodeString = "MISMATCHES"}
 elseif( $ExitCodeInt -eq 3 ) { $ExitCodeString = "OKCOPY + XTRA"}
 elseif( $ExitCodeInt -eq 2 ) { $ExitCodeString = "XTRA"}
 elseif( $ExitCodeInt -eq 1 ) { $ExitCodeString = "OKCOPY"}
@@ -79,7 +78,8 @@ if( $Debug ){
 }
 
 ## Failure Report
-if ($Error){
+# if ($Error){
+if ($ExitCodeInt > 3 ){
 	Write-Host "Send-MailMessage -to $($ToEmail) -From $($env:COMPUTERNAME) -Subject $($env:COMPUTERNAME) - Exit Reason [$($ExitCodeString)] Code [$($ExitCodeInt)] -SmtpServer $($SmptServer) –Attachments $($Log)";
 	Send-MailMessage -to $ToEmail -From $FromEmail -Subject "$($env:COMPUTERNAME) - Exit Reason [$($ExitCodeString)] Code [$($ExitCodeInt)]" -SmtpServer $SmptServer –Attachments $Log;
 	}
