@@ -1,7 +1,7 @@
-$client="Perenco"
+$client="client_name"
 $viserver="192.168.1.80"
 $viuser="root"
-$vipass="Perenco123!"
+$vipass="Password123!"
 
 $from="dtovee@dtovee.plus.net"
 $to="dtovee@email.com"
