@@ -40,3 +40,4 @@ foreach ($virtual_machine in $virtual_machines) {
 #     $message = New-Object System.Net.Mail.MailMessage "${from}", "${to}", "${subject}", "${body}`n${body2}"
 #     $smtp.Send($message)
 # }
+
